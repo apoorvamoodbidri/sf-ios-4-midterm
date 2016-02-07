@@ -13,33 +13,34 @@ class CalculatorViewController: UIViewController {
     var number1:Float?
     var number2:Float?
     var result:Float?
+    var inMiddleOfTyping:Bool = true
+
     
   
     @IBOutlet weak var displayNumberTextField: UITextField!
     
    
     @IBAction func operatorSelected(sender: AnyObject) {
-        inMiddleOfTyping = false // to indicate that its time yo take in another number after this
-        number1 = (Float((displayNumberTextField?.text!)!)!)
+        inMiddleOfTyping = false
+        number1 = (Float((displayNumberTextField?.text!)!)!)//safe unwrapping
         print(number1)
          operand = (sender.titleLabel?!.text)!
         
     }
     
     @IBAction func appendSign(sender: AnyObject) {
-        let sign = (sender.titleLabel?!.text)!
-        if inMiddleOfTyping
+       // let sign = (sender.titleLabel?!.text)!
+        if inMiddleOfTyping && displayNumberTextField.text == displayNumberTextField.text!
         {
             displayNumberTextField.text = "-" + displayNumberTextField.text!
         }
-        else
-        if inMiddleOfTyping && sign == "_"
+        else 
         {
-            displayNumberTextField.text = "+" + displayNumberTextField.text!
+            displayNumberTextField.text = displayNumberTextField.text!
+            
         }
-        else {
-            displayNumberTextField.text = "-" + displayNumberTextField.text!
-        }
+        
+        
     }
     
     @IBAction func numberTapped(sender: AnyObject) {
@@ -109,7 +110,6 @@ class CalculatorViewController: UIViewController {
         
     }
     
-    var inMiddleOfTyping:Bool = false
     
     
     @IBAction func addDecimalPoint(sender: AnyObject) {
