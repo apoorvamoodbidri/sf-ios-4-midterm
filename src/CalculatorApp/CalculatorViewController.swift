@@ -13,34 +13,33 @@ class CalculatorViewController: UIViewController {
     var number1:Float?
     var number2:Float?
     var result:Float?
-    var inMiddleOfTyping:Bool = true
-
     
   
     @IBOutlet weak var displayNumberTextField: UITextField!
     
    
     @IBAction func operatorSelected(sender: AnyObject) {
-        inMiddleOfTyping = false
-        number1 = (Float((displayNumberTextField?.text!)!)!)//safe unwrapping
+        inMiddleOfTyping = false // to indicate that its time yo take in another number after this
+        number1 = (Float((displayNumberTextField?.text!)!)!)
         print(number1)
          operand = (sender.titleLabel?!.text)!
         
     }
     
     @IBAction func appendSign(sender: AnyObject) {
-       // let sign = (sender.titleLabel?!.text)!
-        if inMiddleOfTyping && displayNumberTextField.text == displayNumberTextField.text!
+        let sign = (sender.titleLabel?!.text)!
+        if inMiddleOfTyping
         {
             displayNumberTextField.text = "-" + displayNumberTextField.text!
         }
-        else 
+        else
+        if inMiddleOfTyping && sign == "_"
         {
-            displayNumberTextField.text = displayNumberTextField.text!
-            
+            displayNumberTextField.text = "+" + displayNumberTextField.text!
         }
-        
-        
+        else {
+            displayNumberTextField.text = "-" + displayNumberTextField.text!
+        }
     }
     
     @IBAction func numberTapped(sender: AnyObject) {
@@ -94,22 +93,32 @@ class CalculatorViewController: UIViewController {
     }
 
     @IBAction func calculateOnTappung(sender: AnyObject) {
-        
-//        let opr = (sender.titleLabel?!.text)!
-//        
-//        var register:Float = Float(displayNumberTextField!.text!)!
-//        
-//        switch opr {
-//            case "MC":
-//                 register = 0
-//            
-//            case "M+":
-//                displayNumberTextField.text = String(register +
+//        var register:Float?
+//        let opr = (sender.titleLabel?!.text!)!
+//        if opr == "M+"
+//        {
+//            register = Float(displayNumberTextField.text!)!
 //        }
-//
+//        else if opr == "M-"
+//        {
+//            register = Float(displayNumberTextField.text!)!
+//        }
+//        else if opr == "Mr"
+//        {
+//            displayNumberTextField.text = String(register)
+//        }
+//        else if opr == "MC"
+//        {
+//            register = 0
+//            
+//        }
+//      
+        
+        
         
     }
     
+    var inMiddleOfTyping:Bool = false
     
     
     @IBAction func addDecimalPoint(sender: AnyObject) {
