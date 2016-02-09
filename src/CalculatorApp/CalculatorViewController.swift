@@ -20,8 +20,13 @@ class CalculatorViewController: UIViewController {
    
     @IBAction func operatorSelected(sender: AnyObject) {
         inMiddleOfTyping = false // to indicate that its time yo take in another number after this
-        number1 = (Float((displayNumberTextField?.text!)!)!)
-        print(number1)
+    
+        if let text = displayNumberTextField?.text,
+            let floatValue = Float(text) {
+                print(floatValue)
+                number1 = floatValue
+        }
+
          operand = (sender.titleLabel?!.text)!
         
     }
@@ -51,12 +56,13 @@ class CalculatorViewController: UIViewController {
         displayNumberTextField.text! = number
             inMiddleOfTyping = true
         }
-       // print(number)
     }
     
     @IBAction func calculatePercentageOnTapping(sender: AnyObject) {  // function to calculate percentage
-        number1 = (Float((displayNumberTextField?.text!)!)!)
-        
+        if let text = displayNumberTextField?.text,
+            let percentValue = Float(text) {
+                number1 = percentValue
+        }
         displayNumberTextField.text = String(number1! / 100)
         
         
