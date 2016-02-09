@@ -19,9 +19,9 @@ class CalculatorViewController: UIViewController {
     
    
     @IBAction func operatorSelected(sender: AnyObject) {
-        inMiddleOfTyping = false // to indicate that its time yo take in another number after this
+        inMiddleOfTyping = false // to write a double or more digit
     
-        if let text = displayNumberTextField?.text,
+        if let text = displayNumberTextField?.text,    // safe way to unwrap
             let floatValue = Float(text) {
                 print(floatValue)
                 number1 = floatValue
@@ -49,7 +49,7 @@ class CalculatorViewController: UIViewController {
     
     @IBAction func numberTapped(sender: AnyObject) {
         let number:String = (sender.titleLabel?!.text)!
-        if inMiddleOfTyping {   // to take in more than a digit
+        if inMiddleOfTyping {
             displayNumberTextField.text = displayNumberTextField.text! + number
         }
         else {
@@ -119,7 +119,7 @@ class CalculatorViewController: UIViewController {
 //            
 //        }
 //      
-        
+//        
         
         
     }
@@ -133,7 +133,7 @@ class CalculatorViewController: UIViewController {
             displayNumberTextField.text = displayNumberTextField.text! + dot
         }
         else {
-            displayNumberTextField.text = dot
+            displayNumberTextField.text = dot 
             inMiddleOfTyping = false
         }
         
